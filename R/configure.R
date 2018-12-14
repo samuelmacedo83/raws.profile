@@ -48,13 +48,11 @@ aws_configure_list <- function(profile = "default"){
 
   name <- NULL
   value <- NULL
-  # as duas primeiras linhas é o header e ----
+  # the two first lines are the header and ----
   for (i in 3:length(configure_list)){
-    name[i - 2] <- substr(configure_list[i], 1, 10)
-    value[i - 2] <- substr(configure_list[i], 16, 35)
+    name[i - 2] <- stringr::str_trim(substr(configure_list[i], 1, 10))
+    value[i - 2] <- stringr::str_trim(substr(configure_list[i], 16, 35))
   }
 
-  name <- purrr::map_chr(name, stringr::str_trim)
-  value <- purrr::map_chr(value, stringr::str_trim)
   tibble::tibble(name, value)
 }
