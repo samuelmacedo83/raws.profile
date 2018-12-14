@@ -1,12 +1,13 @@
 Package: awsi.configure
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Wrapper for Configure Function on AWS CLI
 Version: 0.1.0
-Author: Samuel Macedo
-Maintainer: Samuel Macedo <samuelmacedo@recife.ifpe.edu.br>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Samuel Macêdo
+Maintainer: Samuel Macêdo <samuelmacedo@recife.ifpe.edu.br>
+Description: This package provides methods to manage the user 
+configuration on Amazon Web Service. It is also provide a 
+function to install the AWS CLI.
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports: 
