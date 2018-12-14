@@ -1,8 +1,9 @@
 #' Install AWS CLI
 #'
-#' This function download and install the AWS CLI. For Linux and Mac is
-#' necessary Python 2.6.5 or greater. You can also install the CLI
-#' manually, see \url{https://aws.amazon.com/cli/}
+#' This function download and install the AWS CLI for windows, linux or
+#' mac. For Linux and Mac is necessary Python 2.6.5 or greater.
+#' You can also install the CLI manually,
+#' see \url{https://aws.amazon.com/cli/}
 #'
 #' @export
 aws_cli_install <- function(){
