@@ -7,31 +7,47 @@
 #' @export
 aws_cli_install <- function(){
 
-  if (Sys.getenv("SystemRoot") == "C:\\WINDOWS"){ # windows
-    if (dir.exists("C:\\Program Files\\Amazon\\AWSCLI")){
-      aws_version <- aws_version()
-      message(paste0("AWS cli is already installed under ",
-                     aws_version, " version."))
-    } else {
+  if (!Sys.which("aws") == ""){
+    aws_version <- aws_version()
+    message("AWS CLI is already installed.")
+  } else if (Sys.getenv("SystemRoot") == "C:\\WINDOWS"){ # windows
       if (Sys.getenv("PROCESSOR_ARCHITECTURE") == "x86"){
-        aws_cli_download("https://s3.amazonaws.com/aws-cli/AWSCLI32.msi",
-                         "AWSCLI32.msi")
+        aws_cli_windows("https://s3.amazonaws.com/aws-cli/AWSCLI32.msi",
+                        "AWSCLI32.msi")
       } else {
-        aws_cli_download("https://s3.amazonaws.com/aws-cli/AWSCLI64.msi",
-                         "AWSCLI64.msi")
+        aws_cli_windows("https://s3.amazonaws.com/aws-cli/AWSCLI64.msi",
+                        "AWSCLI64.msi")
       }
-
+    } else{# linux or mac
+    if (!Sys.which("python3") == "") {
+      aws_cli_pip(python_version = 3)
+    } else if (!Sys.which("python") == "") {
+      aws_cli_pip(python_version = "")
+    } else {
+      stop("Python is required. ",
+           "Please, look at https://www.python.org/downloads/")
     }
-  } else{# linux or mac
-
   }
-
-
 }
 
-aws_cli_download <- function(aws_cli_url,
-                             aws_system){
+# instalattion on linux and mac
+aws_cli_pip <- function(python_version){
 
+  pip <- paste0("pip", python_version)
+
+  if (!Sys.which(pip) == "") {
+    message("Downloading AWS CLI")
+    system(paste(pip, "install awscli"))
+  } else {
+    stop(pip, " is required. ",
+         "Please, look at https://pip.pypa.io/en/stable/installing/")
+  }
+  message("Instalattion complete.")
+}
+
+# installation on windows
+aws_cli_windows <- function(aws_cli_url,
+                             aws_system){
   temp_dir <- tempdir()
 
   message("Downloading AWS CLI")

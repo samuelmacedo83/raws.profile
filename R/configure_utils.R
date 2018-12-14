@@ -1,4 +1,3 @@
-#
 aws_profile <- function(profile){
 
   if (profile == "default"){
