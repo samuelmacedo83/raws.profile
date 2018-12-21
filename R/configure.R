@@ -1,21 +1,53 @@
-#' User configuration
+#' User profile configuration
 #'
-#' Functions to configure and visualize the user credentials
+#' Functions to configure and visualize the user credentials. You can
+#' see a profile settings using \code{profile_settings()} and vizualise
+#' all profiles created using \code{list_profiles()}. The AWS CLI
+#' saves your credentials in ~/.aws folder, so, for security reasons,
+#' delete your credentials when you finish your work using
+#' \code{delete_all_profiles()}.
 #'
 #' @param profile The profile-name. If profile was not supplied
-#' \code{aws_profile()} will create a default profile.
+#' \code{create_profile()} will create a default profile.
 #' @param access_key The access key create by AWS.
 #' @param secret_key The secret key create by AWS.
 #' @param region The default region
-#' @name aws_configs
+#'
+#' @examples
+#' \dontrun{
+#' # To run these examples you need the AWS CLI, use
+#' # aws_cli_install() if it is not installed.
+#'
+#' # configure a default user
+#' create_profile(access_key = "my_access_key_1",
+#'                secret_key = "123456789",
+#'                region = "us-east-1" )
+#'
+#' # verify if the user was created
+#' profile_settings()
+#'
+#' # you can also create a user with a profile name
+#' create_profile(profile = "profile_name",
+#'                access_key = "my_access_key_2",
+#'                secret_key = "987654321",
+#'                region = "us-west-1")
+#'
+#' # verify if the user was created
+#' profile_settings(profile = "profile_name")
+#'
+#' # remove your credentials from this computer
+#' delete_all_profiles()
+#' }
+#'
+#' @name aws_profile
 NULL
 
-#' @rdname aws_configs
+#' @rdname aws_profile
 #' @export
-aws_configure <- function(profile = "default",
-                          access_key = NULL,
-                          secret_key = NULL,
-                          region = NULL){
+create_profile <- function(profile = "default",
+                           access_key = NULL,
+                           secret_key = NULL,
+                           region = NULL){
 
  command <- "aws configure set"
  profile <- aws_profile(profile)
@@ -33,9 +65,9 @@ aws_configure <- function(profile = "default",
  }
 }
 
-#' @rdname aws_configs
+#' @rdname aws_profile
 #' @export
-aws_configure_list <- function(profile = "default"){
+profile_settings <- function(profile = "default"){
 
   if (is.null(profile)){
     profile <- ""
@@ -55,4 +87,12 @@ aws_configure_list <- function(profile = "default"){
   }
 
   tibble::tibble(name, value)
+}
+
+#' @rdname aws_profile
+#' @export
+delete_all_profiles <- function(){
+  home <- Sys.getenv("HOME")
+  unlink(paste0(home, "/.aws/config"))
+  unlink(paste0(home, "/.aws/credentials"))
 }
