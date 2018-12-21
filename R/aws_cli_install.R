@@ -52,10 +52,10 @@ aws_cli_windows <- function(aws_cli_url,
   temp_dir <- tempdir()
 
   message("Downloading AWS CLI")
-  download.file(aws_cli_url,
-                destfile = paste0(temp_dir, "\\", aws_system),
-                method = "curl",
-                quiet = TRUE)
+  utils::download.file(aws_cli_url,
+                       destfile = paste0(temp_dir, "\\", aws_system),
+                       method = "curl",
+                       quiet = TRUE)
 
   system(paste0("MSIEXEC /i ",
                 temp_dir, "\\", aws_system,
