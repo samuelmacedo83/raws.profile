@@ -1,4 +1,8 @@
-#' Title
+#' AWS CLI version
+#'
+#' This function provides the version of AWS CLI installed. A message
+#' to use \code{aws_cli_install()} will be exhibit if the AWS CLI
+#' was not found.
 #'
 #' @export
 aws_version <- function(){
