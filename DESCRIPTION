@@ -1,4 +1,4 @@
-Package: awsi.configure
+Package: raws.profile
 Type: Package
 Title: Wrapper for Configure Function on AWS CLI
 Version: 0.1.0
@@ -12,5 +12,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     stringr,
-    tibble
+    tibble,
+    utils
 RoxygenNote: 6.1.1
