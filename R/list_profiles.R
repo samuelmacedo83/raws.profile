@@ -1,27 +1,36 @@
 #' The profile names saved
 #'
 #' The AWs CLI creates two profile files: credentials
-#' and config. Use \code{list_profiles("config")} if you want to see
-#' the profile names in config file.
+#' and config. This function return the profiles availables in both
+#' files.
 #'
-#' @param aws_file A string: "credentials" or "config".
-#' @import stringr
 #' @return A tibble with the profile names available.
 #' @examples
 #'  \dontrun{
 #'  # use this for profile names available
 #'  list_profiles()
-#'
-#'  # use this if want to see the profiles on config file
-#'  list_profiles("config")
 #'  }
 #' @export
-list_profiles <- function(aws_file = "credentials"){
+list_profiles <- function(){
+
+  credentials_profile <- profile_available("credentials")
+  config_profile <- profile_available("config")
+
+  if (is.null(credentials_profile) & is.null(config_profile)){
+    stop("There is no profiles saved", call. = FALSE)
+  }
+
+  unique(rbind(credentials_profile,
+               config_profile))
+}
+
+#' @import stringr
+profile_available <- function(aws_file){
 
   profile_path <- profile_path(aws_file)
 
-  if (!file.exists(profile_path)){
-    message("There is no profiles saved")
+  if(!file.exists(profile_path)){
+    profile_list <- NULL
   } else {
     profiles <- utils::read.table(profile_path,
                                   sep = "\n")$V1 %>%
@@ -35,6 +44,9 @@ list_profiles <- function(aws_file = "credentials"){
         str_remove("profile ")
     }
 
-    tibble::data_frame(profiles = profiles)
+    profile_list <- tibble::data_frame(profiles = profiles)
   }
+
+  profile_list
 }
+

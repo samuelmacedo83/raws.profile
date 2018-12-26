@@ -18,7 +18,7 @@
 #' # To run these examples you need the AWS CLI, use
 #' # aws_cli_install() if it is not installed.
 #'
-#' # configure a default user
+#' # create a default user
 #' create_profile(access_key = "my_access_key_1",
 #'                secret_key = "123456789",
 #'                region = "us-east-1" )
@@ -69,13 +69,20 @@ create_profile <- function(profile = "default",
 #' @export
 profile_settings <- function(profile = "default"){
 
-  if (is.null(profile)){
-    profile <- ""
-  } else {
-    profile <- paste("--profile", profile)
+  profiles <- list_profiles()
+
+  if (!any(profiles == profile)){
+    stop(paste("The", profile , "profile does not exist."),
+         call. = FALSE)
   }
 
-  configure_list <- system(paste("aws configure list", profile),
+  if (profile == "default"){
+    cmd_profile <- ""
+  } else {
+    cmd_profile <- paste("--profile", profile)
+  }
+
+  configure_list <- system(paste("aws configure list", cmd_profile),
                            intern = TRUE)
 
   name <- NULL
@@ -86,13 +93,10 @@ profile_settings <- function(profile = "default"){
     value[i - 2] <- stringr::str_trim(substr(configure_list[i], 16, 35))
   }
 
-  tibble::tibble(name, value)
-}
+  # AWS CLI put the value for default as <not set>
+  if (profile == "default"){
+    value[1] <- "default"
+  }
 
-#' @rdname aws_profile
-#' @export
-delete_all_profiles <- function(){
-  home <- Sys.getenv("HOME")
-  unlink(paste0(home, "/.aws/config"))
-  unlink(paste0(home, "/.aws/credentials"))
+  tibble::tibble(name, value)
 }
