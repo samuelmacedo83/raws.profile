@@ -1,12 +1,17 @@
 Package: raws.profile
 Type: Package
-Title: Wrapper for Configure Function on AWS CLI
+Title: Managing Profiles on Amazon Web Service
 Version: 0.1.0
-Author: Samuel Macêdo
+Authors@R: c(
+    person("Samuel", "Macêdo", 
+      email = "samuelmacedo@recife.ifpe.edu.br", role = c("aut", "cre"))
+    )
 Maintainer: Samuel Macêdo <samuelmacedo@recife.ifpe.edu.br>
-Description: This package provides methods to manage the user 
-  configuration on Amazon Web Service. It is also provide a 
-  function to install the AWS CLI.
+Description: This is a wrapper from AWS Command Line Interface that
+  provides methods to manage the user configuration on Amazon Web Service.
+  You can create as many profile as you want, manage and delete them. The
+  profiles creates with this implemetation work with all AWS products like:
+  S3, Glacier and EC2. It is also provides a function to install the AWS CLI.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
@@ -15,3 +20,5 @@ Imports:
     tibble,
     utils
 RoxygenNote: 6.1.1
+Suggests: 
+    testthat
