@@ -1,7 +1,68 @@
-#' Title
+#' Delete profiles
 #'
-#' @param profile
+#' These functions delete the profiles created. Use
+#' \code{delete_profile()} to delete one or more profiles and use
+#' \code{delete_all_profiles()} if you want ot delete all of them.
 #'
+#' @param profile A string or a vector of strings with the profiles
+#' to delete.
+#'
+#' @examples
+#' \dontrun{
+#' # To run these examples you need the AWS CLI, use
+#' # aws_cli_install() if it is not installed.
+#'
+#' # default user
+#' create_profile(access_key = "my_access_key_1",
+#'                secret_key = "123456789",
+#'                region = "us-east-1")
+#'
+#' # profile_name1
+#' create_profile(profile = "profile_name1",
+#'                access_key = "my_access_key_2",
+#'                secret_key = "987654321",
+#'                region = "us-west-1")
+#'
+#' # profile_name2
+#' create_profile(profile = "profile_name2",
+#'                access_key = "my_access_key_3",
+#'                secret_key = "12344321",
+#'                region = "us-west-1")
+#'
+#' # profile_name3
+#' create_profile(profile = "profile_name3",
+#'                access_key = "my_access_key_3",
+#'                secret_key = "98766789",
+#'                region = "us-east-1")
+#'
+#' # profile_name4
+#' create_profile(profile = "profile_name4",
+#'                access_key = "my_access_key_4",
+#'                secret_key = "192837465",
+#'                region = "us-west-1")
+#'
+#' # profile_name5
+#' create_profile(profile = "profile_name5",
+#'                access_key = "my_access_key_5",
+#'                secret_key = "546372819",
+#'                region = "us-east-1")
+#'
+#' # delete default profile
+#' delete_profile()
+#'
+#' # delete one profile
+#' delete_profile("profile_name1")
+#'
+#' # delete two profiles
+#' delete_profile(c("profile_name2", "profile_name3"))
+#'
+#' # remove your credentials from this computer
+#' delete_all_profiles()
+#' }
+#' @name delete_profile
+NULL
+
+#' @rdname delete_profile
 #' @export
 delete_profile <- function(profile = "default"){
 
@@ -29,7 +90,14 @@ delete_profile <- function(profile = "default"){
       delete_profiles(profile, num_profiles, "config")
      }
    }
+}
 
+#' @rdname delete_profile
+#' @export
+delete_all_profiles <- function(){
+  home <- Sys.getenv("HOME")
+  unlink(paste0(home, "/.aws/config"))
+  unlink(paste0(home, "/.aws/credentials"))
 }
 
 # delete more than one profile
@@ -41,9 +109,9 @@ delete_profiles <- function(profile, num_profiles, aws_file){
 }
 
 # delete a profile
-delete_one_profile <- function(profile, aws_file, write = TRUE){
+delete_one_profile <- function(profile, aws_file){
 
-  profiles <- list_profiles(aws_file)
+  profiles <- profile_available(aws_file)
 
   if (any(profiles == profile)){
     profile_path <- profile_path(aws_file)
@@ -70,7 +138,4 @@ delete_one_profile <- function(profile, aws_file, write = TRUE){
                    aws_file, " file."),
             call. = FALSE)
   }
-
 }
-
-
