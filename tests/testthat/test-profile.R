@@ -6,9 +6,6 @@ test_that("Installation works", {
 })
 
 test_that("Create_profile works", {
-  temp_dir <- tempdir()
-  withr::local_envvar(c("HOME" = temp_dir))
-
   create_profile(access_key = "1234",
                  secret_key = "1234",
                  region = "nowhere1")
@@ -24,8 +21,8 @@ test_that("Create_profile works", {
                  region = "nowhere3")
 
   # test if the credentials and config were created
-  if(file.exists(paste0(temp_dir, "/.aws/credentials")) &
-     file.exists(paste0(temp_dir, "/.aws/config"))){
+    if(file.exists(paste0(Sys.getenv("HOME"),"/.aws/credentials")) &
+       file.exists(paste0(Sys.getenv("HOME"),"/.aws/config"))){
     result <- TRUE
   } else {
     result <- FALSE
@@ -47,8 +44,8 @@ test_that("Create_profile works", {
   # test delete_all_profiles()
   delete_all_profiles()
 
-  if(file.exists(paste0(temp_dir, "/.aws/credentials")) &
-     file.exists(paste0(temp_dir, "/.aws/config"))){
+ if(file.exists(paste0(Sys.getenv("HOME"),"/.aws/credentials")) &
+       file.exists(paste0(Sys.getenv("HOME"),"/.aws/config"))){
     result <- FALSE
   } else {
     result <- TRUE
