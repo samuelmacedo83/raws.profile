@@ -7,5 +7,5 @@ cache: packages
 warnings_are_errors: true
 
 before_install:
-  - sudo pip3 install --user awscli
+  - sudo pip install --user awscli
 
