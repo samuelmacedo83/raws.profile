@@ -7,6 +7,6 @@ cache: packages
 warnings_are_errors: true
 
 before_install:
-  - sudo pip install --user awscli
+  - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
 
