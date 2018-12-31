@@ -3,10 +3,10 @@ Type: Package
 Title: Managing Profiles on Amazon Web Service
 Version: 0.1.0
 Authors@R: c(
-    person("Samuel", "Macêdo", 
+    person("Samuel", "Macedo", 
       email = "samuelmacedo@recife.ifpe.edu.br", role = c("aut", "cre"))
     )
-Maintainer: Samuel Macêdo <samuelmacedo@recife.ifpe.edu.br>
+Maintainer: Samuel Macedo <samuelmacedo@recife.ifpe.edu.br>
 Description: This is an R wrapper from the AWS Command Line Interface that 
   provides methods to manage the user configuration on Amazon Web Service. You 
   can create as many profiles as you want, manage them, and delete them. The 

@@ -1,11 +1,13 @@
 context("Tests for raws.profile")
 
 test_that("Installation works", {
+  skip_on_cran()
   result <- stringr::str_detect(Sys.which("aws"), "aws")
   expect_true(result)
 })
 
 test_that("Create_profile works", {
+  skip_on_cran()
   create_profile(access_key = "1234",
                  secret_key = "1234",
                  region = "nowhere1")
