@@ -1,11 +1,19 @@
 # raws.profile
 
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/raws.profile)](https://cran.r-project.org/package=raws.profile)
+<a href="https://www.r-pkg.org/pkg/raws.profile"><img src="https://cranlogs.r-pkg.org/badges/raws.profile?color=brightgreen" style=""></a>
+
 This is an R wrapper from the AWS Command Line Interface that 
 provides methods to manage the user configuration on Amazon Web Service. You 
 can create as many profiles as you want, manage them, and delete them. The 
 profiles created with this tool work with all AWS products such as S3, 
 Glacier, and EC2. It also provides a function to automatically install 
 AWS CLI, but you can download it and install it manually if you prefer.
+
+To use raws.profile package, you will need an AWS account and create a profile.
+To do this, go to your AWS account and generate your credentials on
+[IAM Management Console](https://aws.amazon.com/). This process will generate an
+access key and a secret key, use them to create a profile. 
 
 ## Installation
 
