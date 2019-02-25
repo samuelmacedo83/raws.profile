@@ -116,5 +116,5 @@ list_profiles()
 ```
 # Contributing
 
-Did you find a bug or want to help us in a new feature? It's awesome! Please look at our [contributing guideline][.github/CONTRIBUTING.md]
+Did you find a bug or want to help us in a new feature? It's awesome! Please look at our [contributing guideline][https://github.com/samuelmacedo83/raws.profile/blob/master/.github/CONTRIBUTING.md]
 
