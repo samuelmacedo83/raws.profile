@@ -21,7 +21,7 @@
 #' # create a default user
 #' create_profile(access_key = "my_access_key_1",
 #'                secret_key = "123456789",
-#'                region = "us-east-1" )
+#'                region = "us-east-1")
 #'
 #' # verify if the user was created
 #' profile_settings()
@@ -47,7 +47,7 @@ NULL
 create_profile <- function(profile = "default",
                            access_key = NULL,
                            secret_key = NULL,
-                           region = NULL){
+                           region = "us-east-1"){
 
  command <- "aws configure set"
  profile <- aws_profile(profile)
