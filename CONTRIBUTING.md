@@ -67,9 +67,12 @@ We try to follow the [GitHub flow](https://guides.github.com/introduction/flow/)
 5. Commit and push your changes.
 6. Submit a [pull request](https://guides.github.com/activities/forking/#making-a-pull-request).
 
+## Attribution
 
+This contributing text was adapted from [here][homepage]. Thanks a lot!
+
+[homepage]: https://gist.github.com/peterdesmet/e90a1b0dc17af6c12daf6e8b2f044e7c
 [repo]: https://github.com/samuelmacedo83/raws.profile
 [issues]: https://github.com/samuelmacedo83/raws.profile/issues
 [new_issue]: https://github.com/samuelmacedo83/raws.profile/issues/new
-[citation]: https://our_org.github.io/our_package/authors.html
 [email]: samuelmacedo@recife.ifpe.edu.br

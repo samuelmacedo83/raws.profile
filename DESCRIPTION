@@ -1,12 +1,12 @@
 Package: raws.profile
 Type: Package
 Title: Managing Profiles on Amazon Web Service
-Version: 0.1.0
+Version: 0.1.1.9000
 Authors@R: c(
-    person("Samuel", "Macedo", 
+    person("Samuel", "Macêdo", 
       email = "samuelmacedo@recife.ifpe.edu.br", role = c("aut", "cre"))
     )
-Maintainer: Samuel Macedo <samuelmacedo@recife.ifpe.edu.br>
+Maintainer: Samuel Macêdo <samuelmacedo@recife.ifpe.edu.br>
 Description: This is an R wrapper from the AWS Command Line Interface that 
   provides methods to manage the user configuration on Amazon Web Service. You 
   can create as many profiles as you want, manage them, and delete them. The 
@@ -14,7 +14,6 @@ Description: This is an R wrapper from the AWS Command Line Interface that
   Glacier, and EC2. It also provides a function to automatically install 
   AWS CLI, but you can download it and install it manually if you prefer.
 License: GPL (>= 2)
-Encoding: UTF-8
 LazyData: true
 Imports: 
     stringr,
@@ -24,3 +23,5 @@ Imports:
 RoxygenNote: 6.1.1
 Suggests: 
     testthat
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
