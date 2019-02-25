@@ -1,4 +1,6 @@
+^CRAN-RELEASE$
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^cran-comments\.md$
+^.github/
