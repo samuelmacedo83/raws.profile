@@ -114,5 +114,7 @@ delete_all_profiles()
 # show the profiles remained
 list_profiles()
 ```
+# Contributing
 
+Did you find a bug or want to help us in a new feature? It's awesome! Please look at our [contributing guideline][.github/CONTRIBUTING.md]
 
