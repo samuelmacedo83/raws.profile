@@ -6,8 +6,8 @@
 \alias{profile_settings}
 \title{User profile configuration}
 \usage{
-create_profile(profile = "default", access_key = NULL,
-  secret_key = NULL, region = NULL)
+create_profile(profile = "default", access_key, secret_key,
+  region = "us-east-1")
 
 profile_settings(profile = "default")
 }
@@ -37,7 +37,7 @@ delete your credentials when you finish your work using
 # create a default user
 create_profile(access_key = "my_access_key_1",
                secret_key = "123456789",
-               region = "us-east-1" )
+               region = "us-east-1")
 
 # verify if the user was created
 profile_settings()
