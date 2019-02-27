@@ -45,27 +45,17 @@ NULL
 #' @rdname aws_profile
 #' @export
 create_profile <- function(profile = "default",
-                           access_key = NULL,
-                           secret_key = NULL,
+                           access_key,
+                           secret_key,
                            region = "us-east-1"){
 
- command <- "aws configure set"
- profile <- aws_profile(profile)
-
- if (!is.null(access_key)){
-   system(paste(command, "aws_access_key_id", access_key, profile))
- }
-
- if (!is.null(secret_key)){
-   system(paste(command, "aws_secret_access_key", secret_key, profile))
- }
-
- if (!is.null(region)){
-   system(paste(command, "region", region, profile))
- }
+  change_access_key(access_key, profile)
+  change_secret_key(secret_key, profile)
+  change_region(region, profile)
 }
 
 #' @rdname aws_profile
+#' @importFrom magrittr %>%
 #' @export
 profile_settings <- function(profile = "default"){
 
@@ -76,14 +66,9 @@ profile_settings <- function(profile = "default"){
          call. = FALSE)
   }
 
-  if (profile == "default"){
-    cmd_profile <- ""
-  } else {
-    cmd_profile <- paste("--profile", profile)
-  }
-
-  configure_list <- system(paste("aws configure list", cmd_profile),
-                           intern = TRUE)
+  configure_list <- aws_configure("list") %>%
+    aws_profile(profile) %>%
+    call_cli()
 
   name <- NULL
   value <- NULL

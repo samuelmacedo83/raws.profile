@@ -1,13 +1,13 @@
-# input the profile in command line
-aws_profile <- function(profile){
-
-  if (profile == "default"){
-    profile <- ""
-  } else {
-    profile <- paste("--profile", profile)
-  }
-  profile
-}
+# # input the profile in command line
+# aws_profile <- function(profile){
+#
+#   if (profile == "default"){
+#     profile <- ""
+#   } else {
+#     profile <- paste("--profile", profile)
+#   }
+#   profile
+# }
 
 # path for profile credentials or config
 profile_path <- function(aws_file){
@@ -16,3 +16,6 @@ profile_path <- function(aws_file){
 }
 
 
+aws_parameter <- function(command, parameter, value){
+  paste(command, parameter, value)
+}

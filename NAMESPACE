@@ -2,9 +2,13 @@
 
 export(aws_cli_install)
 export(aws_version)
+export(change_access_key)
+export(change_region)
+export(change_secret_key)
 export(create_profile)
 export(delete_all_profiles)
 export(delete_profile)
 export(list_profiles)
 export(profile_settings)
 import(stringr)
+importFrom(magrittr,"%>%")
